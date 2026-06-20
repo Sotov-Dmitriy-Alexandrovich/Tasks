@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 
 class UserController extends Controller
 {
-    public function store(Request $request){
-        $user = User::create($request->all());
+    public function store(RegisterRequest $request){
+        $user = User::create($request->validated());
         return $user;
     }
     public function index(){
@@ -21,7 +22,6 @@ class UserController extends Controller
         );
     }
     public function update(Request $request, $id){
-        $user = User::find($id);
         User::find($id)->update($request->all());
         return response()->json(
             "Пользователь с id $id обновлен"
