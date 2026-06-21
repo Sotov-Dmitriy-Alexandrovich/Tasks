@@ -16,7 +16,7 @@ class TaskController extends Controller
 
         $tasks = $request->user()->tasks()->orderBy('created_at', 'desc')->get();
 
-        return view('tasks.tasks', compact('tasks'));
+        return view('tasks.index', compact('tasks'));
     }
     public function destroy($id){
         Task::find($id)->delete();

@@ -15,7 +15,7 @@ class UserController extends Controller
         if (Auth::attempt($request->only('email', 'password'))) {
             $token = Auth::user()->createToken('api')->plainTextToken;
 
-            return view('tasks.tasks');
+            return view('index');
         }
         return response()->json([
             "message" => 'Ошибка'
@@ -26,7 +26,7 @@ class UserController extends Controller
     {
         $user = User::create($request->validated());
         Auth::login($user);
-        return view('tasks.tasks')->with('success', 'Регистрация успешна! Добро пожаловать!');
+        return view('index')->with('success', 'Регистрация успешна! Добро пожаловать!');
     }
 
     public function index()
