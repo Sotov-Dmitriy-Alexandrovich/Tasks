@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TaskController;
 
-// Главная
+
 Route::get('/', function () {
     if (auth()->check()) {
         return redirect()->route('tasks.index');
@@ -12,21 +12,18 @@ Route::get('/', function () {
     return redirect()->route('login.form');
 });
 
-// Регистрация
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register.form');
 
 Route::post('/register', [UserController::class, 'store'])->name('register');
 
-// Вход
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login.form');
 
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
-// Задачи (только авторизованные)
 Route::middleware('auth')->group(function () {
     Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
     Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
@@ -35,7 +32,6 @@ Route::middleware('auth')->group(function () {
     Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
     Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
 
-    // Выход
     Route::post('/logout', function () {
         auth()->logout();
         request()->session()->invalidate();
