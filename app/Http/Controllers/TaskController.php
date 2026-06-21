@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    // Список задач с фильтрацией
     public function index(Request $request)
     {
         $query = auth()->user()->tasks();
@@ -32,13 +31,11 @@ class TaskController extends Controller
         return view('tasks.index', compact('tasks'));
     }
 
-    // Форма создания
     public function create()
     {
         return view('tasks.create');
     }
 
-    // Сохранение новой задачи
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -53,7 +50,6 @@ class TaskController extends Controller
         return redirect()->route('tasks.index')->with('success', 'Задача создана!');
     }
 
-    // Форма редактирования
     public function edit(Task $task)
     {
         if ($task->user_id !== auth()->id()) {
@@ -63,7 +59,6 @@ class TaskController extends Controller
         return view('tasks.edit', compact('task'));
     }
 
-    // Обновление задачи
     public function update(Request $request, Task $task)
     {
         if ($task->user_id !== auth()->id()) {
@@ -83,7 +78,6 @@ class TaskController extends Controller
         return redirect()->route('tasks.index')->with('success', 'Задача обновлена!');
     }
 
-    // Удаление задачи
     public function destroy(Task $task)
     {
         if ($task->user_id !== auth()->id()) {

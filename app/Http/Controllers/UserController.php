@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    // Регистрация
     public function store(RegisterRequest $request)
     {
         $user = User::create($request->validated());
@@ -17,7 +16,6 @@ class UserController extends Controller
         return redirect()->route('tasks.index')->with('success', 'Регистрация успешна! Добро пожаловать!');
     }
 
-    // Вход
     public function login(Request $request)
     {
         $credentials = $request->validate([
