@@ -9,6 +9,7 @@
 <body>
 <main>
     <div class="container">
+
         <header class="header">
             <div class="header__info">
                 <h1 class="header__title">Мои задачи</h1>
@@ -91,7 +92,7 @@
                         <div class="task__meta">
                             @if($task->due_date)
                                 <span class="task__due">
-                                    📅 {{ \Carbon\Carbon::parse($task->due_date)->format('d.m.Y H:i') }}
+                                     {{ \Carbon\Carbon::parse($task->due_date)->format('d.m.Y H:i') }}
                                 </span>
                             @endif
                             <span class="task__created">
@@ -114,29 +115,26 @@
                             </button>
                         </form>
 
-                        <a href="{{ route('tasks.edit', $task->id) }}" class="btn-icon" title="Редактировать">
-                            ✏️
-                        </a>
+                        <a href="{{ route('tasks.edit', $task->id) }}" class="btn-icon" title="Редактировать">✏️</a>
 
                         <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="task__delete"
                               onsubmit="return confirm('Удалить задачу?')">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn-icon btn-icon--danger" title="Удалить">
-                                🗑️
-                            </button>
+                            <button type="submit" class="btn-icon btn-icon--danger" title="Удалить">🗑️</button>
                         </form>
                     </div>
                 </article>
             @empty
                 <div class="empty-state">
-                    <div class="empty-state__icon">📋</div>
+                    <div class="empty-state__icon"></div>
                     <h2 class="empty-state__title">Задач пока нет</h2>
                     <p class="empty-state__text">Создайте свою первую задачу, чтобы начать планировать день</p>
                     <a href="{{ route('tasks.create') }}" class="btn btn--primary">+ Создать задачу</a>
                 </div>
             @endforelse
         </div>
+
     </div>
 </main>
 </body>

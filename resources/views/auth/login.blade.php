@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход — Sotov-Tasks</title>
-    <link rel="stylesheet" href="{{asset('css/auth.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
 </head>
 <body>
 <main>
@@ -12,6 +12,7 @@
         <div class="card">
             <h1 class="card__heading">Войти в аккаунт</h1>
             <p class="card__text">Начните управлять задачами прямо сейчас</p>
+
             @if($errors->any())
                 <div class="errors">
                     <ul>
@@ -28,8 +29,7 @@
                 <div class="form-group">
                     <label>Email</label>
                     <div class="input-wrapper email">
-                        <input type="email" name="email" value="{{ old('email') }}" placeholder="ivan@example.com"
-                               required>
+                        <input type="email" name="email" value="{{ old('email') }}" placeholder="ivan@example.com" required>
                     </div>
                 </div>
 
@@ -49,8 +49,10 @@
                         </button>
                     </div>
                 </div>
+
                 <button type="submit" class="btn">Войти</button>
             </form>
+
             <p class="login-link">
                 У вас нет аккаунта? <a href="/register">Зарегистрироваться</a>
             </p>
@@ -68,6 +70,5 @@
         });
     });
 </script>
-
 </body>
 </html>

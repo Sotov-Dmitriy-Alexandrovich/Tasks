@@ -12,20 +12,21 @@ Route::get('/', function () {
     return redirect()->route('login.form');
 });
 
-// ===== АВТОРИЗАЦИЯ (веб) =====
+// Регистрация
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register.form');
 
-Route::post('/register', [UserController::class, 'register'])->name('register');
+Route::post('/register', [UserController::class, 'store'])->name('register');
 
+// Вход
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login.form');
 
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
-// ===== ЗАДАЧИ (веб, только авторизованные) =====
+// Задачи (только авторизованные)
 Route::middleware('auth')->group(function () {
     Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
     Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');

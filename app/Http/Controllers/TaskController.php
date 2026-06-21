@@ -12,7 +12,6 @@ class TaskController extends Controller
     {
         $query = auth()->user()->tasks();
 
-        // Фильтр по статусу
         if ($request->has('filter')) {
             if ($request->filter === 'active') {
                 $query->where('is_completed', false);
@@ -21,7 +20,6 @@ class TaskController extends Controller
             }
         }
 
-        // Фильтр по приоритету
         if ($request->has('priority')) {
             $query->where('priority', (int)$request->priority);
         }

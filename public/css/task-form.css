@@ -1,8 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -35,25 +31,12 @@ body {
     text-decoration: none;
     font-size: 14px;
     margin-bottom: 24px;
-    transition: color 0.2s;
 }
 
-.card__back:hover {
-    color: #1a1a1a;
-}
+.card__back:hover { color: #1a1a1a; }
 
-.card__heading {
-    font-size: 28px;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 8px;
-}
-
-.card__text {
-    font-size: 15px;
-    color: #666;
-    margin-bottom: 32px;
-}
+.card__heading { font-size: 28px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px; }
+.card__text { font-size: 15px; color: #666; margin-bottom: 32px; }
 
 .errors {
     width: 100%;
@@ -65,25 +48,12 @@ body {
     border-radius: 8px;
 }
 
-.errors ul {
-    list-style: none;
-    color: #c62828;
-    font-size: 14px;
-}
+.errors ul { list-style: none; color: #c62828; font-size: 14px; }
+.errors li { padding: 4px 0; }
 
-.errors li {
-    padding: 4px 0;
-}
+.task-form { display: flex; flex-direction: column; gap: 20px; }
 
-.task-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.form-group {
-    width: 100%;
-}
+.form-group { width: 100%; }
 
 .form-group__label {
     display: block;
@@ -116,27 +86,14 @@ body {
 }
 
 .form-group__input::placeholder,
-.form-group__textarea::placeholder {
-    color: #999;
-}
+.form-group__textarea::placeholder { color: #999; }
 
-.form-group__textarea {
-    min-height: 100px;
-    resize: vertical;
-}
+.form-group__textarea { min-height: 100px; resize: vertical; }
 
-.form-row {
-    display: flex;
-    gap: 16px;
-}
+.form-row { display: flex; gap: 16px; }
+.form-row .form-group { flex: 1; }
 
-.form-row .form-group {
-    flex: 1;
-}
-
-.form-group--checkbox {
-    padding: 12px 0;
-}
+.form-group--checkbox { padding: 12px 0; }
 
 .form-group__checkbox-label {
     display: flex;
@@ -170,27 +127,11 @@ body {
     margin-top: 8px;
 }
 
-.btn--primary {
-    background-color: #1a1a1a;
-    color: #ffffff;
-}
-
-.btn--primary:hover {
-    background-color: #333;
-    transform: translateY(-1px);
-}
+.btn--primary { background-color: #1a1a1a; color: #ffffff; }
+.btn--primary:hover { background-color: #333; transform: translateY(-1px); }
 
 @media (max-width: 480px) {
-    .card {
-        padding: 28px 20px;
-    }
-
-    .card__heading {
-        font-size: 24px;
-    }
-
-    .form-row {
-        flex-direction: column;
-        gap: 20px;
-    }
+    .card { padding: 28px 20px; }
+    .card__heading { font-size: 24px; }
+    .form-row { flex-direction: column; gap: 20px; }
 }
