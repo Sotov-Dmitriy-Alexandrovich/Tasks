@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function login(Request $request){
+
+    }
     public function store(RegisterRequest $request){
         $user = User::create($request->validated());
 
