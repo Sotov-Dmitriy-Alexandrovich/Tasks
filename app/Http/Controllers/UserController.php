@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
-use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,18 +16,9 @@ class UserController extends Controller
         return redirect()->route('tasks.index')->with('success', 'Регистрация успешна! Добро пожаловать!');
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ], [
-            'email.required' => 'Введите email',
-            'email.email' => 'Введите корректный email',
-            'password.required' => 'Введите пароль',
-        ]);
-
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($request->validated())) {
             $request->session()->regenerate();
             return redirect()->intended(route('tasks.index'))->with('success', 'Добро пожаловать!');
         }

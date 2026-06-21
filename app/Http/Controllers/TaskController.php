@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use App\Http\Requests\TaskUpdateRequest;
+use App\Http\Requests\TaskStoreRequest;
+
 
 class TaskController extends Controller
 {
@@ -36,16 +39,9 @@ class TaskController extends Controller
         return view('tasks.create');
     }
 
-    public function store(Request $request)
+    public function store(TaskStoreRequest $request)
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'priority' => 'required|integer|between:1,3',
-            'due_date' => 'nullable|date',
-        ]);
-
-        auth()->user()->tasks()->create($validated);
+        auth()->user()->tasks()->create($request->validated());
 
         return redirect()->route('tasks.index')->with('success', 'Задача создана!');
     }
@@ -59,21 +55,12 @@ class TaskController extends Controller
         return view('tasks.edit', compact('task'));
     }
 
-    public function update(Request $request, Task $task)
+    public function update(TaskUpdateRequest $request, Task $task)
     {
         if ($task->user_id !== auth()->id()) {
             abort(403);
         }
-
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'priority' => 'required|integer|between:1,3',
-            'due_date' => 'nullable|date',
-            'is_completed' => 'nullable|boolean',
-        ]);
-
-        $task->update($validated);
+        $task->update($request->validated());
 
         return redirect()->route('tasks.index')->with('success', 'Задача обновлена!');
     }
