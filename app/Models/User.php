@@ -9,11 +9,13 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 #[Fillable(['first_name', 'last_name', 'email', 'password'])]
 #[Hidden(['remember_token'])]
 class User extends Authenticatable
 {
+    use HasApiTokens, Notifiable;
     use HasFactory, Notifiable;
 
     protected function casts(): array

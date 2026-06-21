@@ -6,31 +6,48 @@ use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use function Laravel\Prompts\error;
 
 class UserController extends Controller
 {
-    public function login(Request $request){
-        if(Auth::attempt($request->only('email', 'password'))){
-            return "Успешная регистрация!";
+    public function login(Request $request)
+    {
+        if (Auth::attempt($request->only('email', 'password'))) {
+            $token = Auth::user()->createToken('api');
+
+            return response()->json([
+                'data' => [
+                    'user_token' => $token->plainTextToken
+                ]
+            ]);
         }
-
+        return response()->json([
+            "message" => 'Ошибка'
+        ], 401);
     }
-    public function store(RegisterRequest $request){
-        $user = User::create($request->validated());
 
+    public function store(RegisterRequest $request)
+    {
+        $user = User::create($request->validated());
         Auth::login($user);
         return redirect()->route('tasks.index')->with('success', 'Регистрация успешна! Добро пожаловать!');
     }
-    public function index(){
+
+    public function index()
+    {
         return User::all();
     }
-    public function destroy($id){
+
+    public function destroy($id)
+    {
         User::find($id)->delete();
         return response()->json(
             "User с id $id Удален"
         );
     }
-    public function update(Request $request, $id){
+
+    public function update(Request $request, $id)
+    {
         User::find($id)->update($request->all());
         return response()->json(
             "Пользователь с id $id обновлен"

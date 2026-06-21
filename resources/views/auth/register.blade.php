@@ -9,7 +9,6 @@
 <body>
 <main>
     <div class="container">
-
         <div class="card">
             <h1 class="card__heading">Создать аккаунт</h1>
             <p class="card__text">Начните управлять задачами прямо сейчас</p>
