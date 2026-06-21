@@ -13,13 +13,9 @@ class UserController extends Controller
     public function login(Request $request)
     {
         if (Auth::attempt($request->only('email', 'password'))) {
-            $token = Auth::user()->createToken('api');
+            $token = Auth::user()->createToken('api')->plainTextToken;
 
-            return response()->json([
-                'data' => [
-                    'user_token' => $token->plainTextToken
-                ]
-            ]);
+            return view('tasks.tasks');
         }
         return response()->json([
             "message" => 'Ошибка'
@@ -30,7 +26,7 @@ class UserController extends Controller
     {
         $user = User::create($request->validated());
         Auth::login($user);
-        return redirect()->route('tasks.index')->with('success', 'Регистрация успешна! Добро пожаловать!');
+        return view('tasks.tasks')->with('success', 'Регистрация успешна! Добро пожаловать!');
     }
 
     public function index()

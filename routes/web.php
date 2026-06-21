@@ -10,9 +10,7 @@ Route::get('/register',function() {
 })->name('register.form');
 Route::post('/register', [UserController::class, 'store'])->name('register');
 
-Route::get('/tasks',function() {
-   return view('tasks.tasks');
-});
 Route::get('/login',function(){
     return view('auth.login');
 });
+Route::post('/login', [UserController::class, 'login'])->name('login');
