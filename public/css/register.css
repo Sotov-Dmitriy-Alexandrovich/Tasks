@@ -158,8 +158,51 @@ body {
     color: #555;
     text-decoration: underline;
 }
+.input-wrapper {
+    position: relative;
+}
 
-/* Адаптивность */
+.input-wrapper input {
+    padding-right: 48px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    transition: color 0.2s;
+}
+
+.toggle-password:hover {
+    color: #333;
+}
+
+.toggle-password svg {
+    width: 20px;
+    height: 20px;
+}
+
+.toggle-password .eye-off {
+    display: none;
+}
+
+.toggle-password.active .eye-on {
+    display: none;
+}
+
+.toggle-password.active .eye-off {
+    display: block;
+}
+
 @media (max-width: 768px) {
     .card {
         padding: 32px 24px;

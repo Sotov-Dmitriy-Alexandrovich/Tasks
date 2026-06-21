@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function login(Request $request){
+        if(Auth::attempt($request->only('email', 'password'))){
+            return "Успешная регистрация!";
+        }
 
     }
     public function store(RegisterRequest $request){
