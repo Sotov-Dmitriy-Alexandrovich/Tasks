@@ -111,17 +111,39 @@
                             <input type="hidden" name="due_date" value="{{ $task->due_date ? \Carbon\Carbon::parse($task->due_date)->format('Y-m-d\TH:i') : '' }}">
                             <input type="hidden" name="is_completed" value="{{ $task->is_completed ? 0 : 1 }}">
                             <button type="submit" class="btn-icon" title="{{ $task->is_completed ? 'Вернуть в активные' : 'Отметить выполненной' }}">
-                                {{ $task->is_completed ? '↩️' : '✓' }}
+                                @if($task->is_completed)
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 7v6h6"/>
+                                        <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/>
+                                    </svg>
+                                @else
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"/>
+                                    </svg>
+                                @endif
                             </button>
                         </form>
 
-                        <a href="{{ route('tasks.edit', $task->id) }}" class="btn-icon" title="Редактировать">✏️</a>
+                        <a href="{{ route('tasks.edit', $task->id) }}" class="btn-icon" title="Редактировать">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                            </svg>
+                        </a>
 
                         <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="task__delete"
                               onsubmit="return confirm('Удалить задачу?')">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn-icon btn-icon--danger" title="Удалить">🗑️</button>
+                            <button type="submit" class="btn-icon btn-icon--danger" title="Удалить">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"/>
+                                    <path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/>
+                                    <path d="M10 11v6"/>
+                                    <path d="M14 11v6"/>
+                                    <path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/>
+                                </svg>
+                            </button>
                         </form>
                     </div>
                 </article>
