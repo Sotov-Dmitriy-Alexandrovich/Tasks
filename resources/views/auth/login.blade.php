@@ -23,7 +23,7 @@
                 </div>
             @endif
 
-            <form class="form-register" method="POST" action="{{ route('login') }}">
+            <form class="form-login" method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <div class="form-group">
@@ -36,7 +36,7 @@
                 <div class="form-group">
                     <label>Пароль</label>
                     <div class="input-wrapper lock">
-                        <input type="password" name="password" placeholder="Минимум 6 символов" required>
+                        <input type="password" id="password-login" name="password" placeholder="Минимум 6 символов" required>
                         <button type="button" class="toggle-password" aria-label="Показать пароль">
                             <svg class="eye-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
@@ -59,16 +59,6 @@
         </div>
     </div>
 </main>
-
-<script>
-    document.querySelectorAll('.toggle-password').forEach(button => {
-        button.addEventListener('click', function() {
-            const input = this.previousElementSibling;
-            const type = input.type === 'password' ? 'text' : 'password';
-            input.type = type;
-            this.classList.toggle('active');
-        });
-    });
-</script>
+<script src="{{asset('js/main.js')}}"></script>
 </body>
 </html>

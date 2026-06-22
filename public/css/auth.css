@@ -53,7 +53,9 @@ body {
 .errors ul { list-style: none; color: #c62828; font-size: 14px; }
 .errors li { padding: 4px 0; }
 
-.form-register {
+.form-register,
+.form-login
+{
     display: flex;
     flex-direction: column;
     gap: 20px;
