@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Редактировать задачу — Sotov-Tasks</title>
     <link rel="stylesheet" href="{{ asset('css/task-form.css') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
 </head>
 <body>
 <main>
