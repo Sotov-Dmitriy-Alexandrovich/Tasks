@@ -8,7 +8,7 @@
 
 > Веб-приложение для управления задачами с авторизацией, фильтрацией и приоритетами.
 
- **Демо:** [tasks.sotov.tech](https://tasks.sotov.tech)
+ **Сам сайт:** [https://tasks.sotov.tech](https://tasks.sotov.tech)
 
 ---
 
